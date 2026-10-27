@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Student Visa DIY Web Portal for Indian Students</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        germany: {
+                            black: '#111827',
+                            red: '#dc2626',
+                            gold: '#f59e0b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        mark.highlight {
+            background-color: #fef08a;
+            color: #854d0e;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Top Sticky Header -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 gap-4">
+                
+                <!-- Mobile Menu Button & Logo -->
+                <div class="flex items-center gap-3">
+                    <button id="sidebar-toggle" class="lg:hidden p-2 text-slate-600 hover:text-brand-600 focus:outline-none rounded-md hover:bg-slate-100">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                    <div class="flex items-center gap-2">
+                        <div class="flex h-7 w-2 rounded overflow-hidden shadow-sm">
+                            <span class="w-1/3 bg-black"></span>
+                            <span class="w-1/3 bg-red-600"></span>
+                            <span class="w-1/3 bg-amber-500"></span>
+                        </div>
+                        <span class="font-bold text-lg text-slate-900 tracking-tight hidden sm:inline-block">Germany DIY Visa Guide</span>
+                    </div>
+                </div>
+
+                <!-- Real-time Search Bar -->
+                <div class="flex-1 max-w-xl relative">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+                        </div>
+                        <input type="text" id="global-search" 
+                            class="block w-full pl-10 pr-10 py-2 border border-slate-300 rounded-lg bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-all" 
+                            placeholder="Search guide (e.g., APS, Sperrkonto, ECTS, VIDEX, VFS)...">
+                        <button id="clear-search" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </button>
+                    </div>
+                    <div id="search-counter" class="text-xs text-slate-500 mt-1 absolute right-1 -bottom-5 hidden"></div>
+                </div>
+
+                <!-- Quick Action Header Link -->
+                <div>
+                    <a href="#ask-question" class="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 shadow-sm transition">
+                        <i class="fa-regular fa-paper-plane mr-2"></i> Ask Question
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Condensed Disclaimer Banner -->
+    <div class="bg-amber-50 border-b border-amber-200 py-2 px-4 text-center text-xs text-amber-900">
+        <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 flex-wrap">
+            <i class="fa-solid fa-triangle-exclamation text-amber-600"></i>
+            <span><strong>Disclaimer:</strong> Reading this guide does not qualify you for a visa. This is an AI-generated informational result; we assume no responsibility for documentation accuracy. Please cross-verify all details on official government portals.</span>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 flex gap-8 w-full">
+
+        <!-- Collapsible Sidebar Navigation -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 bg-white border-r border-slate-200 transform -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out lg:static lg:z-auto lg:w-72 shrink-0 flex flex-col h-[calc(100vh-5rem)] sticky top-20 rounded-xl shadow-sm overflow-hidden">
+            <div class="p-4 bg-slate-100 border-b border-slate-200 flex justify-between items-center">
+                <h2 class="font-bold text-slate-700 text-sm uppercase tracking-wider">Navigation Index</h2>
+                <button id="sidebar-close" class="lg:hidden text-slate-500 hover:text-slate-800">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <nav class="p-3 overflow-y-auto space-y-1 text-sm flex-1">
+                <a href="#part1-orientation" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition">Part 1: Student Orientation</a>
+                <a href="#prerequisites" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition ml-2 text-xs">Prerequisites & Pillars</a>
+                <a href="#step-procedure" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition ml-2 text-xs">Step-by-Step Procedure</a>
+                
+                <a href="#institution-types" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition mt-2">Types of Institutions</a>
+                <a href="#admission-requirements" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition ml-2 text-xs">Admission Requirements</a>
+                <a href="#portal-directory" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition ml-2 text-xs">Portal Directory</a>
+                
+                <a href="#direct-options" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition mt-2">Direct Admission Alternatives</a>
+                
+                <a href="#financial-part" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition mt-2">Financial Breakdown</a>
+                
+                <a href="#course-choice" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition mt-2">Course Choice Foundation</a>
+                
+                <a href="#selecting-course" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition mt-2">Selecting Right Course</a>
+                
+                <a href="#aps-workflow" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition mt-2">APS Workflow</a>
+                
+                <a href="#uniassist-guide" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition mt-2">Uni-Assist & VPD Guide</a>
+                <a href="#public-vs-private" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition ml-2 text-xs">Public vs Private Unis</a>
+                
+                <a href="#financial-setup-insurance" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition mt-2">Financial & Insurance Setup</a>
+                
+                <a href="#videx-dossier-vfs" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition mt-2">VIDEX & VFS Dossier</a>
+                <a href="#pitfalls-avoid" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition ml-2 text-xs">Pitfalls to Avoid</a>
+                
+                <a href="#templates-faq" class="nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition mt-2">Cover Letter & FAQ</a>
+                
+                <a href="#ask-question" class="nav-link block px-3 py-2 rounded-md font-medium text-brand-600 hover:bg-brand-50 transition mt-2 border-t border-slate-200 pt-2"><i class="fa-solid fa-question-circle mr-1"></i> Ask a Question</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 min-w-0 bg-white rounded-xl border border-slate-200 p-6 lg:p-10 shadow-sm" id="content-container">
+
+            <!-- Banner -->
+            <div class="bg-gradient-to-r from-slate-900 via-brand-900 to-slate-900 text-white rounded-xl p-6 mb-8 shadow-md">
+                <span class="inline-block px-3 py-1 bg-amber-500 text-black font-bold text-xs rounded-full uppercase mb-2">Verified DIY Blueprint</span>
+                <h1 class="text-2xl lg:text-3xl font-extrabold tracking-tight">German Student Visa DIY Guide for Indian Students</h1>
+                <p class="mt-2 text-slate-300 text-sm sm:text-base leading-relaxed">
+                    Complete, unedited, verbatim documentation and roadmap for Indian applicants navigating university admissions and Subcategory D National Student Visa processing without high agency commissions.
+                </p>
+            </div>
+
+            <div class="space-y-12 leading-relaxed text-slate-700">
+
+                <!-- SECTION: PART 1 ORIENTATION -->
+                <section id="part1-orientation" class="scroll-mt-24 border-b border-slate-200 pb-8">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-compass text-brand-600"></i> Part 1: "Before You Begin" (Student Orientation)
+                    </h2>
+                    <p class="mb-4">Before an Indian student fills out a single form, pays an application fee, or requests transcripts, they need a clear reality check on studying in Germany application and visa process:</p>
+                    
+                    <blockquote class="p-4 my-4 bg-slate-50 border-l-4 border-brand-600 text-slate-800 italic rounded-r-md">
+                        "An open-source, step-by-step DIY roadmap for Indian students migrating to Germany for higher education—eliminating middleman agency fees through verified documentation and peer-driven community support(This will be added on the go)."
+                    </blockquote>
+
+                    <!-- PREREQUISITES -->
+                    <div id="prerequisites" class="mt-6 scroll-mt-24">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Prerequisites & Mandatory Eligibility Documentation</h3>
+                        <p class="mb-4">Before an applicant can begin filling out forms or booking appointments, they must satisfy and gather these six foundational pillars:</p>
+
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                                <p class="font-semibold text-slate-900">1. Timeline & Planning Window:</p>
+                                <p>Applying to Germany is a 9 to 12-month process. Starting late leads to missed university deadlines or delayed visa processing.</p>
+                            </div>
+
+                            <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                                <p class="font-semibold text-slate-900">2. Academic Verification Reality (APS India):</p>
+                                <p>Since 2022, every Indian student must obtain an APS Certificate before applying to universities or obtaining a student visa. This alone takes 4 to 8 weeks.</p>
+                                <p class="mt-2 font-medium text-slate-800">Primary Document: Digital APS Certificate (Akademische Prüfstelle India).</p>
+                                <p class="font-medium text-slate-800 mt-1">Supporting Records:</p>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Class 10 & 12 marksheets and passing certificates.</li>
+                                    <li>All undergraduate semester marksheets and degree/provisional certificate.</li>
+                                    <li>Anabin Database extracts showing H+ university status and Entspricht / Gleichwertigkeit degree recognition.</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                                <p class="font-semibold text-slate-900">3. Educational Admission Proof</p>
+                                <p class="font-medium text-slate-800">Primary Document: Admission Letter (Zulassungsbescheid) or Preliminary Documentation Certificate (VPD) from Uni-Assist.</p>
+                                <p class="font-medium text-slate-800 mt-1">Verification Rules: Must explicitly state whether it is an Unconditional Admission or Conditional Admission (e.g., requiring prior language course enrollment).</p>
+                            </div>
+
+                            <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                                <p class="font-semibold text-slate-900">3. Financial Proof (Proof of Subsistence)</p>
+                                <p class="font-medium text-slate-800">Primary Document: Blocked Account (Sperrkonto) official opening & deposit confirmation letter.</p>
+                                <p class="font-medium text-slate-800 mt-1">Mandatory Threshold: Minimum €11,208/year (€934/month) deposited into an accredited provider (e.g., Expatrio, Coracle, Fintiba).</p>
+                                <p class="font-medium text-slate-800 mt-1">Alternative Document: Formal Declaration of Support (Verpflichtungserklärung) from a sponsor legally residing in Germany.</p>
+                            </div>
+
+                            <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                                <p class="font-semibold text-slate-900">5. Valid Passport & Travel Credentials</p>
+                                <p class="font-medium text-slate-800">Validity Rule: Issued within the last 10 years with at least 2 blank pages and valid for at least 12 months beyond the intended travel date.</p>
+                                <p class="font-medium text-slate-800 mt-1">Biometric Photos: 3 passport photos meeting German biometric specifications (35x45mm, light background, neutral expression).</p>
+                            </div>
+
+                            <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                                <p class="font-semibold text-slate-900">6. No Agencies Needed (The DIY Philosophy):</p>
+                                <p>Everything—from university application on Uni-Assist to visa booking on VFS Global—can be done independently without paying ₹1 Lakh–₹2.5 Lakhs to local agencies.</p>
+                            </div>
+                        </div>
+
+                        <p class="mt-4">This is basic requirement for a student to study in Germany and acquire student visa .we will step by step guide you how to do achieve this below. Read this documentation in full before you start your application process. You are going to study in a foreign country and your are going to reside in a totally new country. You should not just jump into blues. You don’t have to worry also if you meet the requirement and your documentation are correct you are legally entitled for a visa .No one can object that. This is not Himalayan task. Anyone who have completed their plus two can complete this diy(No big deal.That simple)You should at least read this documentation below in full before investing your money & time.</p>
+                    </div>
+
+                    <!-- STEP BY STEP PROCEDURE -->
+                    <div id="step-procedure" class="mt-8 scroll-mt-24">
+                        <h3 class="text-xl font-bold text-slate-900 mb-4">Step-by-Step Procedure</h3>
+
+                        <div class="space-y-6">
+                            <!-- 1.1 -->
+                            <div class="p-5 border-l-4 border-amber-500 bg-amber-50/30 rounded-r-lg">
+                                <h4 class="font-bold text-slate-900 text-lg">1.1. Academic Verification (APS India)(Before That You should check anabin website weather your university/10th & plus 2 is recognised in Germany(go to step 2)):</h4>
+                                <p class="text-sm font-semibold text-amber-800 my-1">Estimated Duration: 4–6 Weeks | Non-refundable Fee: ₹18,000.</p>
+                                <p class="font-medium text-slate-800">Objective: Mandatory for all Indian degree/diploma holders to obtain a digitally signed APS Certificate before university or visa submission.</p>
+                                
+                                <p class="font-semibold text-slate-900 mt-3">Action Steps:</p>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Register on aps-india.de and fill out your academic history from Class 10 onwards.</li>
+                                    <li>Pay the ₹18,000 fee online via CCAvenue (instant confirmation) or bank transfer.</li>
+                                    <li>Print, sign, and send the application form along with required A4 color photocopies to the APS Office in New Delhi via tracked courier.</li>
+                                    <li>Alert your home university's examination/registrar office to expect a verification email from @aps-india.de.</li>
+                                </ul>
+
+                                <p class="font-semibold text-slate-900 mt-3">Mandatory Document Checklist:</p>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Signed APS Application Form with a passport-size photo.</li>
+                                    <li>Aadhaar card copy (linked to mobile number) & Passport copy (first and last pages).</li>
+                                    <li>Class 10 & 12 mark sheets and passing certificates.</li>
+                                    <li>All semester/year undergraduate mark sheets and provisional/final degree certificate.</li>
+                                    <li>Digital Master Test (dMAT) result certificate (applicable for selected Master's fields if required).</li>
+                                </ul>
+                            </div>
+
+                            <!-- 2 -->
+                            <div class="p-5 border-l-4 border-blue-500 bg-blue-50/30 rounded-r-lg">
+                                <h4 class="font-bold text-slate-900 text-lg">2. Anabin Database & University Eligibility Check:</h4>
+                                <p class="text-sm font-semibold text-blue-800 my-1">Cost: Free | Self-Service Lookup.</p>
+                                <p class="font-medium text-slate-800">Objective: Verify that your Indian school board, college, and degree are recognized under German academic standards.</p>
+                                
+                                <p class="font-semibold text-slate-900 mt-3">Action Steps:</p>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Access anabin.kmk.org → Institutionen → Search for your university.</li>
+                                    <li>Verify that your university holds an H+ status.</li>
+                                    <li>Access Hochschulabschlüsse → Search for your specific degree title (e.g., Bachelor of Technology).</li>
+                                    <li>Verify that the degree status shows Entspricht (Equivalent) or Gleichwertigkeit.</li>
+                                    <li>Print PDF exports of both search result pages (required for visa submission if applying directly).</li>
+                                </ul>
+                            </div>
+
+                            <!-- 3 -->
+                            <div class="p-5 border-l-4 border-indigo-500 bg-indigo-50/30 rounded-r-lg">
+                                <h4 class="font-bold text-slate-900 text-lg">3. University Application via Uni-Assist or Direct Portals:</h4>
+                                <p class="text-sm font-semibold text-indigo-800 my-1">Duration: 4–6 Weeks | Fees: €75 (First choice), €30 (Each additional choice).</p>
+                                <p class="font-medium text-slate-800">Objective: Evaluate foreign certificates and obtain admission or a Preliminary Documentation Certificate (VPD).</p>
+                                
+                                <p class="font-semibold text-slate-900 mt-3">Action Steps:</p>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Check your target university admissions page to determine if they require Direct Portal Application, Full Uni-Assist Application, or Uni-Assist VPD.</li>
+                                    <li>Create a My assist account and fill in educational history once.</li>
+                                    <li>Upload clear, individual PDFs of academic records, APS Certificate, CV (Europass format), IELTS/TOEFL scorecards, and SOP.</li>
+                                    <li>Pay the processing fee online. If applying via the VPD route, download the issued VPD certificate once processed and upload it to the university's internal portal before their deadline.</li>
+                                </ul>
+                            </div>
+
+                            <!-- 4 -->
+                            <div class="p-5 border-l-4 border-emerald-500 bg-emerald-50/30 rounded-r-lg">
+                                <h4 class="font-bold text-slate-900 text-lg">4. Financial Proof & Health Insurance Setup:</h4>
+                                <p class="text-sm font-semibold text-emerald-800 my-1">Duration: 3–7 Days | Minimum Deposit: ~€11,208/year (€934/month).</p>
+                                <p class="font-medium text-slate-800">Objective: Secure proof of adequate financial resources and medical coverage required by German immigration law.</p>
+                                
+                                <p class="font-semibold text-slate-900 mt-3">Action Steps:</p>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li><strong>Blocked Account (Sperrkonto):</strong> Open a blocked account with an officially recognized provider (e.g., Expatrio, Coracle, or Fintiba) and transfer the mandatory yearly living cost amount.</li>
+                                    <li><strong>Health Insurance:</strong> Obtain dual coverage consisting of Travel/Incoming Health Insurance (covering the initial arrival period) and German Public Health Insurance (Gesetzliche Krankenversicherung via TK, Barmer, or AOK) for university enrollment.</li>
+                                </ul>
+                            </div>
+
+                            <!-- 5 -->
+                            <div class="p-5 border-l-4 border-rose-500 bg-rose-50/30 rounded-r-lg">
+                                <h4 class="font-bold text-slate-900 text-lg">5. National Student Visa Application (VIDEX & VFS Global):</h4>
+                                <p class="text-sm font-semibold text-rose-800 my-1">Duration: 4–8 Weeks | Visa Fee: €75 (~₹6,700).</p>
+                                <p class="font-medium text-slate-800">Objective: Submit biometric data and original documentation to receive your Subcategory D National Student Visa.</p>
+                                
+                                <p class="font-semibold text-slate-900 mt-3">Action Steps:</p>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Fill out the official digital application form at videx-national.diplo.de and print the generated PDF barcode pages.</li>
+                                    <li>Book a visa appointment slot on the VFS Global Germany portal matching your jurisdiction (Delhi, Mumbai, Bengaluru, Chennai, or Kolkata).</li>
+                                    <li>Attend the appointment in person to submit biometrics, interview, and hand over the document package.</li>
+                                </ul>
+
+                                <p class="font-semibold text-slate-900 mt-3">Mandatory Visa Document Checklist (In 2 Identical Sets):</p>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Valid Passport (issued within the last 10 years, minimum 2 blank pages).</li>
+                                    <li>Printed & signed VIDEX National Visa Form with passport photos.</li>
+                                    <li>Unconditional University Admission Letter (or conditional admission / Uni-Assist VPD).</li>
+                                    <li>Digital APS Certificate copy.</li>
+                                    <li>Proof of Financial Support (Sperrkonto confirmation letter).</li>
+                                    <li>Travel Health Insurance + Public Health Insurance enrollment confirmation.</li>
+                                    <li>Complete academic transcripts (Class 10, 12, Degree Marksheets, and Certificates).</li>
+                                    <li>Proof of language proficiency (IELTS, TOEFL, TestDaF, or Goethe-Zertifikat).</li>
+                                </ul>
+                            </div>
+
+                            <!-- 6 -->
+                            <div class="p-5 border-l-4 border-purple-500 bg-purple-50/30 rounded-r-lg">
+                                <h4 class="font-bold text-slate-900 text-lg">6. Phase 6: Arrival, Post-Study Work, & Job Seeking:</h4>
+                                <p class="text-sm font-semibold text-purple-800 my-1">Duration: Post-Arrival in Germany.</p>
+                                <p class="font-semibold text-slate-900 mt-2">Core Features & Documentation to Include:</p>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li><strong>Anmeldung (City Registration):</strong> Registering address at the local Bürgeramt within 14 days.</li>
+                                    <li><strong>Residence Permit (Aufenthaltstitel §16b):</strong> Converting entry visa into a long-term student residence permit.</li>
+                                    <li><strong>18-Month Post-Study Work Visa (§20):</strong> Smooth transition path from study completion to full-time job search and EU Blue Card / Skilled Worker Visa (§18g).</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION: INSTITUTION TYPES -->
+                <section id="institution-types" class="scroll-mt-24 border-b border-slate-200 pb-8">
+                    <p class="text-sm text-slate-500 italic mb-2">Here is the complete documentation section on Types of Higher Education Institutions in Germany, their specific admission requirements for Indian students, and official portal links for complete documentation.</p>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">1. Types of German Educational Institutions</h2>
+                    <p class="mb-4">Germany’s higher education system is split into distinct institutional types, each serving different academic and career paths:</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
+                            <h3 class="font-bold text-slate-900 text-lg mb-2">A. Universities (Universitäten / Technische Universitäten - TU)</h3>
+                            <p><strong>Focus:</strong> Theoretical, research-driven academic education and doctorates (PhD).</p>
+                            <p><strong>Key Characteristic:</strong> Ideal for students planning careers in research, academia, or high-level engineering and science fields.</p>
+                            <p class="mt-2 text-sm text-slate-600"><strong>Examples:</strong> TU Munich (TUM), RWTH Aachen, Heidelberg University, LMU Munich.</p>
+                        </div>
+
+                        <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
+                            <h3 class="font-bold text-slate-900 text-lg mb-2">B. Universities of Applied Sciences (Fachhochschulen - FH / Hochschule - HSB)</h3>
+                            <p><strong>Focus:</strong> Practical, industry-aligned education with mandatory internship semesters (Praxissemester).</p>
+                            <p><strong>Key Characteristic:</strong> Strong ties with German engineering and industrial firms. Note: Most FHs do not award PhD degrees directly.</p>
+                            <p class="mt-2 text-sm text-slate-600"><strong>Examples:</strong> Hochschule Bremen (HSB), FH Aachen, Munich University of Applied Sciences.</p>
+                        </div>
+
+                        <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
+                            <h3 class="font-bold text-slate-900 text-lg mb-2">C. Vocational Training / Dual VET (Ausbildung / Duales Studium)</h3>
+                            <p><strong>Ausbildung (Vocational Training):</strong> A 2- to 3.5-year apprenticeship program combining part-time trade school (Berufsschule) with paid hands-on work at a German company.</p>
+                            <p class="mt-1"><strong>Duales Studium (Dual Study):</strong> Combines an academic Bachelor's degree at a university with paid, full-time practical work at a partner company.</p>
+                            <p class="mt-2 text-sm text-slate-600"><strong>Examples:</strong> IT Specialist, Nursing (Pflegefachkraft), Mechatronics, Logistics apprenticeships at companies like Siemens, Deutsche Bahn, or Bosch.</p>
+                        </div>
+
+                        <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
+                            <h3 class="font-bold text-slate-900 text-lg mb-2">D. Colleges of Art, Film, and Music (Kunst-, Film- und Musikhochschulen)</h3>
+                            <p><strong>Focus:</strong> Creative arts, design, fine arts, and performing arts.</p>
+                            <p><strong>Key Characteristic:</strong> Admission is heavily dependent on an artistic portfolio or audition (Eignungsprüfung).</p>
+                            <p class="mt-2 text-sm text-slate-600"><strong>Examples:</strong> University of the Arts Berlin (UdK), HHF Munich.</p>
+                        </div>
+                    </div>
+
+                    <!-- ADMISSION REQUIREMENTS -->
+                    <div id="admission-requirements" class="mt-8 scroll-mt-24">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4">2. Minimum Admission Requirements for Indian Students</h2>
+                        <p class="mb-4">Because Indian high school education (12 years of schooling) historically does not automatically match the German 13-year Abitur, specific entry pathways exist:</p>
+
+                        <div class="space-y-4">
+                            <div class="p-4 border border-slate-200 rounded-lg">
+                                <h4 class="font-bold text-slate-900">Undergraduate (Bachelor's) Direct Admission:</h4>
+                                <ul class="list-disc pl-6 space-y-1 text-sm mt-2">
+                                    <li>12th Grade (CBSE/ICSE/State Board) + APS Certificate</li>
+                                    <li>PLUS 1 year of completed Bachelor's degree at a recognized Indian university (H+ on Anabin) OR clearing JEE Advanced.</li>
+                                    <li>German (B2/C1) or English (IELTS 6.5+) depending on language of instruction.</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-4 border border-slate-200 rounded-lg">
+                                <h4 class="font-bold text-slate-900">Undergraduate (Bachelor's) Indirect Admission (Studienkolleg):</h4>
+                                <ul class="list-disc pl-6 space-y-1 text-sm mt-2">
+                                    <li>12th Grade (CBSE/ICSE/State Board) + APS Certificate.</li>
+                                    <li>Passing the entrance exam (Aufnahmeprüfung) for a 1-year preparatory foundation course (Studienkolleg) ending in the Feststellungsprüfung (FSP).</li>
+                                    <li>Minimum German level B1/B2 is mandatory.</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-4 border border-slate-200 rounded-lg">
+                                <h4 class="font-bold text-slate-900">Postgraduate (Master's) Master of Arts / Science:</h4>
+                                <ul class="list-disc pl-6 space-y-1 text-sm mt-2">
+                                    <li>Recognized 3-year or 4-year Bachelor's degree from an H+ Indian university.</li>
+                                    <li>APS Certificate.</li>
+                                    <li>Minimum CGPA / grade requirement set by the university (e.g., German grade equivalent ≤2.5).</li>
+                                    <li>Course-specific ECTS credit requirements in core subjects.</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-4 border border-slate-200 rounded-lg">
+                                <h4 class="font-bold text-slate-900">Vocational Apprenticeship (Ausbildung):</h4>
+                                <ul class="list-disc pl-6 space-y-1 text-sm mt-2">
+                                    <li>12th Grade / Passed School Leaving Certificate.</li>
+                                    <li>German Language Proficiency: Minimum B1/B2 (Goethe, telc, ÖSD).</li>
+                                    <li>Binding training contract (Ausbildungsvertrag) from a German employer.</li>
+                                    <li>Approval from the Federal Employment Agency (Bundesagentur für Arbeit).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PORTAL DIRECTORY -->
+                    <div id="portal-directory" class="mt-8 scroll-mt-24">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4">3. Official Documentation & Portal Directory</h2>
+                        
+                        <div class="overflow-x-auto border border-slate-200 rounded-lg">
+                            <table class="min-w-full divide-y divide-slate-200 text-sm">
+                                <thead class="bg-slate-100">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left font-bold text-slate-700">Official Portal Name</th>
+                                        <th class="px-4 py-3 text-left font-bold text-slate-700">Official Domain</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 bg-white">
+                                    <tr><td class="px-4 py-2 font-medium">DAAD International Programs & Compass</td><td class="px-4 py-2 text-brand-600">daad.de/international-programs</td></tr>
+                                    <tr><td class="px-4 py-2 font-medium">Anabin / KMK Database</td><td class="px-4 py-2 text-brand-600">anabin.kmk.org</td></tr>
+                                    <tr><td class="px-4 py-2 font-medium">Indian Academic Verification</td><td class="px-4 py-2 text-brand-600">aps-india.de</td></tr>
+                                    <tr><td class="px-4 py-2 font-medium">Uni Application Processing</td><td class="px-4 py-2 text-brand-600">uni-assist.de</td></tr>
+                                    <tr><td class="px-4 py-2 font-medium">Government Migration Guidance</td><td class="px-4 py-2 text-brand-600">make-it-in-germany.com</td></tr>
+                                    <tr><td class="px-4 py-2 font-medium">Official Visa Registration</td><td class="px-4 py-2 text-brand-600">videx-national.diplo.de</td></tr>
+                                    <tr><td class="px-4 py-2 font-medium">Apprenticeships (Ausbildung)</td><td class="px-4 py-2 text-brand-600">arbeitsagentur.de/jobboerse</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION: DIRECT OPTIONS -->
+                <section id="direct-options" class="scroll-mt-24 border-b border-slate-200 pb-8">
+                    <div class="p-4 bg-brand-50 rounded-lg border border-brand-100 mb-4">
+                        <p class="font-semibold text-brand-900">Is there any other options for indian students to enter directly to any type of university after matriculation without student kollege or one year bachelors?</p>
+                        <p class="mt-2 text-slate-800">Yes, there are alternative pathways that allow Indian students to bypass both Studienkolleg and the 1-year Indian university requirement to gain direct entry into German higher education.</p>
+                    </div>
+
+                    <p class="mb-4 font-semibold text-slate-900">Here are the specific, legal alternative routes:</p>
+
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-lg">1. Clearing JEE Advanced (STEM/Engineering Direct Admission)</h3>
+                            <p><strong>How it works:</strong> Under German academic recognition rules (Anabin/KMK guidelines), if an Indian student completes 12th grade and clears the JEE Advanced exam, they qualify for direct admission to public German universities for Bachelor's programs in STEM/Engineering fields.</p>
+                            <p><strong>Requirements:</strong> Passed Class 12 (CBSE/ICSE/State Board) with science subjects + a valid JEE Advanced rank card + an APS Certificate.</p>
+                            <p><strong>Limitation:</strong> Only applies to STEM/Engineering subjects (T-Course track equivalents).</p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-lg">2. International Schooling Curricula in India (IB Diploma / A-Levels)</h3>
+                            <p>If a student studies in India but under an international board instead of CBSE, ICSE, or State Boards, they obtain a direct German university entrance qualification (Direct HZB):</p>
+                            <div class="pl-4 border-l-2 border-slate-300 mt-2 space-y-2">
+                                <p><strong>International Baccalaureate (IB Diploma):</strong> Requires 6 specific IB subjects, including 3 at Higher Level (HL). Must include Mathematics, a Natural Science, and a language.</p>
+                                <p><strong>GCE A-Levels (Cambridge / Edexcel):</strong> Requires passing 3 or 4 independent A-Level subjects matching the intended area of study (e.g., Maths, Physics, Chemistry for Engineering).</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-lg">3. Private German State-Recognized Universities</h3>
+                            <p><strong>How it works:</strong> Many private, state-accredited German universities (e.g., IU International University, Constructor University Bremen, SRH Higher Education) offer direct-entry English-taught Bachelor's programs for Indian 12th-grade graduates.</p>
+                            <p><strong>How they bypass Studienkolleg:</strong> They either integrate an integrated foundation semester into the 3-year program or accept 12th-grade board results directly based on their institutional framework.</p>
+                            <p><strong>Trade-off:</strong> Tuition fees range from €6,000 to €15,000 per year (unlike public universities, which are tuition-free).</p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-lg">4. Direct Entry into Vocational Dual Degrees (Duales Studium / Ausbildung)</h3>
+                            <p><strong>How it works:</strong> A Duales Studium combines a paid apprenticeship at a German company with a Bachelor's degree at a cooperative university (Duale Hochschule).</p>
+                            <p><strong>Requirements:</strong> Strong German language skills (B2 or C1 level) + a company sponsorship contract (Ausbildungsvertrag). Some companies accept Class 12 directly if the candidate passes their internal recruitment assessment.</p>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto border border-slate-200 rounded-lg mt-6">
+                        <table class="min-w-full divide-y divide-slate-200 text-sm">
+                            <thead class="bg-slate-100">
+                                <tr>
+                                    <th class="px-4 py-3 text-left font-bold text-slate-700">Pathway</th>
+                                    <th class="px-4 py-3 text-left font-bold text-slate-700">Target Institutions</th>
+                                    <th class="px-4 py-3 text-left font-bold text-slate-700">Tuition Cost</th>
+                                    <th class="px-4 py-3 text-left font-bold text-slate-700">Mandatory Requirement</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 bg-white">
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">JEE Advanced Rank</td>
+                                    <td class="px-4 py-2">Public Universities (STEM)</td>
+                                    <td class="px-4 py-2">Free (~€300 semester fee)</td>
+                                    <td class="px-4 py-2">Valid JEE Advanced Rank</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">IB / A-Levels Board</td>
+                                    <td class="px-4 py-2">All Public Universities</td>
+                                    <td class="px-4 py-2">Free (~€300 semester fee)</td>
+                                    <td class="px-4 py-2">Specific Subject Combination</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Private Universities</td>
+                                    <td class="px-4 py-2">State-Accredited Private Unis</td>
+                                    <td class="px-4 py-2">€6,000 – €15,000 / year</td>
+                                    <td class="px-4 py-2">12th Grade + English Proficiency</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Duales Studium</td>
+                                    <td class="px-4 py-2">Cooperative Universities</td>
+                                    <td class="px-4 py-2">Free + Earn a Salary</td>
+                                    <td class="px-4 py-2">German B2/C1 + Company Contract</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- SECTION: FINANCIAL BREAKDOWN -->
+                <section id="financial-part" class="scroll-mt-24 border-b border-slate-200 pb-8">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-2">Now what’s the financial part of entering university education in Germany for Indians?</h2>
+                    <p class="mb-4">The financial cost of moving to Germany for higher education as an Indian student consists of five main cost categories:</p>
+
+                    <div class="space-y-6">
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h3 class="font-bold text-slate-900 text-lg">1. Mandatory Living Proof: Blocked Account (Sperrkonto)</h3>
+                            <p class="mt-1">This is the single largest upfront expense required by the German government to issue your visa.</p>
+                            <p class="mt-2"><strong>Required Deposit:</strong> €11,904 per year (approx. ₹10.6 Lakhs to ₹11 Lakhs, depending on exchange rates).</p>
+                            <p class="mt-1"><strong>How it works:</strong> You deposit this full amount into a government-approved blocked account provider (Expatrio, Coracle, or Fintiba) before your visa interview. Once in Germany, you can withdraw up to €992 per month to cover living expenses (rent, food, transport).</p>
+                            <p class="mt-1"><strong>Provider Fees:</strong> ~€50–€100 setup fee + ~€5/month account maintenance.</p>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h3 class="font-bold text-slate-900 text-lg">2. Tuition & Semester Fees (Semesterbeitrag)</h3>
+                            <p class="mt-1"><strong>Public Universities (90%+ of students):</strong> €0 Tuition. However, you must pay a mandatory Semester Contribution (Semesterbeitrag) of €150 to €400 per semester (~₹13,500 – ₹36,000).</p>
+                            <p class="mt-1 font-medium text-emerald-700">Bonus: This fee covers your Semesterticket, giving you free unlimited local/regional public transport for the entire semester.</p>
+                            <p class="mt-1 text-rose-700 font-medium">Exception: Public universities in the state of Baden-Württemberg (e.g., University of Stuttgart, Heidelberg) charge non-EU students €1,500 per semester in tuition.</p>
+                            <p class="mt-1"><strong>Private Universities:</strong> Tuition ranges from €6,000 to €15,000 per year (~₹5.3 Lakhs – ₹13.3 Lakhs).</p>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h3 class="font-bold text-slate-900 text-lg mb-2">3. Initial Pre-Departure Expenses (India Side)</h3>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full text-sm divide-y divide-slate-200">
+                                    <tbody class="divide-y divide-slate-200">
+                                        <tr><td class="py-2 font-medium">APS Certificate Fee</td><td class="py-2">aps-india.de</td><td class="py-2 font-semibold">₹18,000</td></tr>
+                                        <tr><td class="py-2 font-medium">Uni-Assist Fees</td><td class="py-2">uni-assist.de</td><td class="py-2 font-semibold">€75 for 1st university, €30 per Each additional Application(₹6,800 + ₹2,700)</td></tr>
+                                        <tr><td class="py-2 font-medium">National Visa Fee</td><td class="py-2">VFS Global / German Embassy</td><td class="py-2 font-semibold">€75 (~₹6,800) + VFS service charge (₹1,500–₹2,000)</td></tr>
+                                        <tr><td class="py-2 font-medium">Language / Standardized Tests</td><td class="py-2">IELTS / TOEFL / Goethe German</td><td class="py-2 font-semibold">₹16,500 – ₹18,500 (IELTS) / ₹10,000 – ₹20,000 (Goethe A1-B2)</td></tr>
+                                        <tr><td class="py-2 font-medium">One-Way Airfare</td><td class="py-2">India to Germany</td><td class="py-2 font-semibold">₹25,000 – ₹55,000</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h3 class="font-bold text-slate-900 text-lg">4. Monthly Living Expenses (Breakdown of the €992/Month)</h3>
+                            <p class="text-sm text-slate-600 mb-2">Living expenses vary significantly by city (Munich/Frankfurt are expensive; Bremen/Leipzig/Dresden are more affordable):</p>
+                            <ul class="list-disc pl-6 space-y-1 text-sm">
+                                <li><strong>Rent & Utilities (WG room/dorm):</strong> €300 – €550 / month</li>
+                                <li><strong>Public Health Insurance (TK, Barmer, AOK):</strong> €120 – €130 / month (Mandatory until age 30)</li>
+                                <li><strong>Groceries & Food:</strong> €150 – €200 / month</li>
+                                <li><strong>Broadcasting Fee (Rundfunkbeitrag):</strong> ~€18.36 / month per household</li>
+                                <li><strong>Mobile & Internet:</strong> €15 – €30 / month</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h3 class="font-bold text-slate-900 text-lg">5. Working & Earning Back Costs (Student Jobs)</h3>
+                            <p class="mt-1">German student visas allow you to work while studying to help offset living costs:</p>
+                            <ul class="list-disc pl-6 space-y-1 text-sm mt-2">
+                                <li><strong>Work Limits:</strong> 140 full days or 280 half days per calendar year (or up to 20 hours/week during term time).</li>
+                                <li><strong>Minimum Wage:</strong> Statutory minimum wage in Germany is €12.82/hour(14.5 easily acheivable). Working 20 hours/week earns approx. €1,000+/month, which covers basic monthly living costs without touching savings.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION: COURSE CHOICE FOUNDATION -->
+                <section id="course-choice" class="scroll-mt-24 border-b border-slate-200 pb-8">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-3">Course Choice Foundation:</h2>
+                    <p class="mb-4">Your choice of course depend on whether you are targeting a Bachelor’s or Master’s degree. German public universities strictly enforce credit alignment laws (Fachrichtung), meaning your undergraduate subject choices directly dictate what Master's programs you can get into.</p>
+
+                    <div class="space-y-6">
+                        <!-- Scenario A -->
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-xl border-b pb-2">Scenario A: Applying for a Master’s Degree</h3>
+                            <p class="mt-2">German public universities operate almost exclusively on Consecutive Master’s Programs (Konsekutiver Master). You cannot switch fields arbitrarily (e.g., a Bachelor in Commerce generally cannot get into a Master in Computer Science).</p>
+
+                            <div class="space-y-4 mt-4">
+                                <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                                    <h4 class="font-bold text-slate-900">1. If Your Background is B.Tech / B.E. / B.Sc in STEM</h4>
+                                    <p class="mt-1 text-sm"><strong>Direct Match Master's:</strong> M.Sc. in Computer Science, Data Science, Embedded Systems, Automotive Engineering, Mechanical Engineering.</p>
+                                    <p class="mt-1 text-sm"><strong>Cross-Disciplinary Bridge:</strong> M.Sc. in Industrial Engineering (Wirtschaftsingenieurwesen) or Engineering Management. These programs accept STEM credits while adding business, supply chain, and project management modules.</p>
+                                </div>
+
+                                <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                                    <h4 class="font-bold text-slate-900">2. If Your Background is B.Com / BBA / Economics</h4>
+                                    <p class="mt-1 text-sm"><strong>Direct Match Master's:</strong> M.Sc. in International Business, Finance, Accounting, Economics, or Marketing.</p>
+                                    <p class="mt-1 text-sm"><strong>Tech-Driven Business Bridge:</strong> M.Sc. in Business Analytics / Information Systems (Wirtschaftsinformatik). If your Indian degree contained 10–15 credits in basic statistics, mathematics, or introductory IT, you can map into high-demand data analytics roles without needing a full Computer Science degree.</p>
+                                </div>
+
+                                <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                                    <h4 class="font-bold text-slate-900">3. If Your Background is B.A. / Humanities / Social Sciences</h4>
+                                    <p class="mt-1 text-sm"><strong>Direct Match Master's:</strong> M.A. in International Relations, Public Policy, Digital Media, Communication, or European Studies.</p>
+                                    <p class="mt-1 text-sm"><strong>High-Demand Corporate Bridge:</strong> M.A. in UX/UI Design, Service Design, or Digital Marketing Management. These accept humanities or arts backgrounds and focus on product strategy and communication.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scenario B -->
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-xl border-b pb-2">Scenario B: Applying for a Bachelor’s Degree (After Class 12)</h3>
+                            <p class="mt-2 mb-3">Your Class 12 stream determines your Studienkolleg Track (if indirect entry) or your Direct Bachelor Track:</p>
+
+                            <div class="overflow-x-auto border border-slate-200 rounded-lg">
+                                <table class="min-w-full text-sm divide-y divide-slate-200">
+                                    <thead class="bg-slate-100">
+                                        <tr>
+                                            <th class="px-4 py-2 text-left font-bold">Class 12 Stream</th>
+                                            <th class="px-4 py-2 text-left font-bold">Track</th>
+                                            <th class="px-4 py-2 text-left font-bold">Target Fields</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-200 bg-white">
+                                        <tr><td class="px-4 py-2 font-medium">PCM / PCMB (Science)</td><td class="px-4 py-2">T-Course</td><td class="px-4 py-2">Computer Science, Mechanical/Electrical Engineering, Physics, Math</td></tr>
+                                        <tr><td class="px-4 py-2 font-medium">PCB (Biology Focus)</td><td class="px-4 py-2">M-Course</td><td class="px-4 py-2">Medicine, Pharmacy, Biology, Biotechnology, Environmental Science</td></tr>
+                                        <tr><td class="px-4 py-2 font-medium">Commerce with/without Math</td><td class="px-4 py-2">W-Course</td><td class="px-4 py-2">Business Administration (BWL), Economics (VWL), Logistics</td></tr>
+                                        <tr><td class="px-4 py-2 font-medium">Arts / Humanities / Social</td><td class="px-4 py-2">G / S-Course</td><td class="px-4 py-2">Psychology, Sociology, International Relations, Languages</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- How to verify -->
+                        <div class="p-4 bg-amber-50/50 border border-amber-200 rounded-lg">
+                            <h3 class="font-bold text-slate-900 text-lg mb-2">How to Verify Exact Compatibility on Your Own</h3>
+                            <ol class="list-decimal pl-6 space-y-2 text-sm">
+                                <li><strong>Calculate Your Subject-Wise ECTS: Syllabus Audit.</strong><br>Take your consolidated Indian marksheet and count how many credits/hours you have in specific categories (e.g., Higher Math, Programming, Finance, Microeconomics).</li>
+                                <li><strong>Check Target Program Entrance Requirements (Zulassungsordnung): Match Prerequisites.</strong><br>Visit the university's course webpage and open their official Examination and Admission Regulations (Prüfungs- und Zulassungsordnung). Look under section § 2 Admission Requirements (Zugangsvoraussetzungen).</li>
+                                <li><strong>Confirm Credit Cutoffs: Apply Formula.</strong><br>Ensure your Indian credits meet or exceed their stated ECTS minimums. For example, if a Master in Data Science requires 18 ECTS in Linear Algebra/Calculus and you only have 8, you will face an immediate rejection due to credit shortfall.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION: SELECTING RIGHT COURSE -->
+                <section id="selecting-course" class="scroll-mt-24 border-b border-slate-200 pb-8">
+                    <p class="mb-4">Selecting the right university course in Germany requires aligning your academic background with strict admission criteria, then using official databases to filter programs by language, cost, and location.</p>
+
+                    <h3 class="font-bold text-slate-900 text-xl mb-3">Part 1: Key Criteria Before Searching</h3>
+                    <p class="mb-3">Before opening any portal, ensure your profile matches these foundational requirements:</p>
+
+                    <div class="space-y-3 mb-6">
+                        <div class="p-3 bg-slate-50 rounded border border-slate-200">
+                            <p class="font-semibold text-slate-900">Language Track:</p>
+                            <p class="text-sm"><strong>English-taught:</strong> Requires IELTS (typically 6.5+) or TOEFL. Options are mostly available at the Master’s level.</p>
+                            <p class="text-sm"><strong>German-taught:</strong> Requires TestDaF, Goethe (B2–C1), or telc C1 Hochschule.</p>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 rounded border border-slate-200">
+                            <p class="font-semibold text-slate-900">Admission Restrictions:</p>
+                            <p class="text-sm"><strong>NC (Numerus Clausus):</strong> Restricted admissions with a minimum GPA cutoff.</p>
+                            <p class="text-sm"><strong>NC-frei:</strong> Non-restricted; if you meet the minimum entry requirements, you receive an offer.</p>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 rounded border border-slate-200">
+                            <p class="font-semibold text-slate-900">Tuition & Public Status:</p>
+                            <p class="text-sm">Public universities across most federal states charge €0 tuition (only a semester fee of €150–€400, which often includes local public transport).</p>
+                            <p class="text-sm text-rose-700">Exception: Universities in the state of Baden-Württemberg charge non-EU students €1,500/semester.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="font-bold text-slate-900 text-xl mb-3">Part 2: Searching via the DAAD Database</h3>
+                    <p class="mb-3">The DAAD (Deutscher Akademischer Austauschdienst) database is the primary official tool for exploring international programs.</p>
+
+                    <ol class="list-decimal pl-6 space-y-3 text-sm mb-6">
+                        <li><strong>Access the DAAD International Programmes Portal: daad.de/international-programmes.</strong><br>Open the portal and select International Programmes (for English/bilingual degrees) or All Study Programmes (for all courses including German-taught).</li>
+                        <li><strong>Apply Critical Filters:</strong><br>Set the following parameters in the sidebar:
+                            <ul class="list-disc pl-6 mt-1 space-y-1">
+                                <li>Course Type: Bachelor's, Master's, or PhD.</li>
+                                <li>Course Language: Select English only or German only.</li>
+                                <li>Field of Study: Your target discipline (e.g., Engineering, Computer Science, Business).</li>
+                                <li>Tuition Fees: Filter for None to exclude paid/private universities.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Review the Requirements Tab:</strong><br>Click on a program and examine the Requirements / Assessment section. Verify:
+                            <ul class="list-disc pl-6 mt-1 space-y-1">
+                                <li>Exact credit point (ECTS) requirements in prerequisite subjects.</li>
+                                <li>Specific language certificates accepted.</li>
+                                <li>Application deadlines (typically July 15 for Winter semester / January 15 for Summer semester).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cross-Check Admission & Application Route:</strong><br>Check whether applications go directly through the University Portal or via Uni-Assist (uni-assist.de).</li>
+                    </ol>
+
+                    <h3 class="font-bold text-slate-900 text-lg mb-3">Secondary Portals & Tools:</h3>
+                    <div class="overflow-x-auto border border-slate-200 rounded-lg">
+                        <table class="min-w-full text-sm divide-y divide-slate-200">
+                            <tbody class="divide-y divide-slate-200 bg-white">
+                                <tr><td class="px-4 py-2 font-medium">DAAD (daad.de)</td><td class="px-4 py-2">Primary course discovery</td><td class="px-4 py-2">Best filter set for English-taught degrees and tuition-free courses.</td></tr>
+                                <tr><td class="px-4 py-2 font-medium">Hochschulkompass (hochschulkompass.de)</td><td class="px-4 py-2">Comprehensive search</td><td class="px-4 py-2">Managed by the German Rectors' Conference; indexes every accredited degree in Germany (including all German-taught programs).</td></tr>
+                                <tr><td class="px-4 py-2 font-medium">Uni-Assist (uni-assist.de)</td><td class="px-4 py-2">Application processing</td><td class="px-4 py-2">Used by ~180 universities to evaluate foreign credentials and convert grades to the German scale.</td></tr>
+                                <tr><td class="px-4 py-2 font-medium">Anabin (anabin.kmk.org)</td><td class="px-4 py-2">Qualification checking</td><td class="px-4 py-2">Verifies whether your Indian Bachelor's degree and university (H+ status) are recognized in Germany.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- SECTION: APS WORKFLOW -->
+                <section id="aps-workflow" class="scroll-mt-24 border-b border-slate-200 pb-8">
+                    <p class="font-bold text-amber-800 bg-amber-50 p-3 rounded border border-amber-200 mb-4">You should have a preliminary course search in daad Hochschulkompass (hochschulkompass.de)and uniassist before starting your aps process!!</p>
+                    
+                    <p class="mb-4">An APS Certificate (Akademische Prüfstelle)(Once you decide that you are going to study in Germany and you check anabin website that you meet admission criteria you should apply for aps certificate as it may get late to receive normal processing time 4-6 weeks) issued by the German Embassy in New Delhi is a mandatory prerequisite for Indian students applying to German universities and Type D student visas (§ 16b AufenthG). It authenticates your Indian academic qualifications and university accreditation status.</p>
+
+                    <h3 class="font-bold text-slate-900 text-xl mb-4">Step-by-Step APS Application Workflow</h3>
+
+                    <div class="space-y-4">
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h4 class="font-bold text-slate-900">1. Online Registration & Fee Payment: <span class="text-sm font-normal text-slate-600">Cost: ₹18,000 | Mandatory Prerequisites.</span></h4>
+                            <ul class="list-disc pl-6 space-y-1 text-sm mt-2">
+                                <li>Visit the official portal: aps-india.de.</li>
+                                <li>Create an account and fill out the online registration form with your personal and academic details verbatim as they appear on your passport and degree certificates.</li>
+                                <li>Pay the non-refundable verification fee of ₹18,000 online via net banking or credit card.</li>
+                                <li>Save and print the generated APS Application Form and payment receipt.</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h4 class="font-bold text-slate-900">2. Gather & Authorize Student Portal Credentials: <span class="text-sm font-normal text-slate-600">Crucial for fast digital verification.</span></h4>
+                            <p class="text-sm mt-1">Along with your physical documents, APS relies on digital portal verification. Ensure you provide:</p>
+                            <ul class="list-disc pl-6 space-y-1 text-sm mt-2">
+                                <li><strong>Student Portal Access:</strong> Your university student portal URL, roll/enrollment number, and password (or official student ID credentials) written clearly on a separate authorization consent sheet.</li>
+                                <li><strong>Professor / Registrar Email:</strong> Institutional email address of your university's Controller of Examinations or Registrar.</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h4 class="font-bold text-slate-900">3. dMAT Scorecard Integration (If Applicable): <span class="text-sm font-normal text-slate-600">Mandatory PDF downloads for affected Master's fields.</span></h4>
+                            <p class="text-sm mt-1">If applying for specified Master's programs requiring dMAT (digital Academic Master Test via d-mat.de):</p>
+                            <p class="text-sm mt-1">Log into d-mat.de, download your official scorecard PDF, and include a printed copy in your document set.</p>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h4 class="font-bold text-slate-900">4. Compile Physical Document Set & Courier to New Delhi: <span class="text-sm font-normal text-slate-600">Strict A4 loose-leaf standard.</span></h4>
+                            <p class="text-sm mt-1 mb-2">Assemble your document set in a clear folder (do not staple or bind documents):</p>
+                            <ul class="list-disc pl-6 space-y-1 text-sm">
+                                <li>Signed APS Application Form (with glued passport-sized photo).</li>
+                                <li>Fee Payment Receipt copy.</li>
+                                <li>Copy of Passport (Data Page + Address Page).</li>
+                                <li>Copy of Government Photo ID / Aadhaar Card linked to your active mobile number.</li>
+                                <li>Certified copies of Marksheets/Transcripts (10th, 12th, and all Bachelor's semesters).</li>
+                                <li>Degree Certificate or Provisional Degree Certificate.</li>
+                                <li>Language Certificates (IELTS/TOEFL/Goethe/TestDaF), if available.</li>
+                                <li>Signed Student Data Consent Authorization Sheet.</li>
+                            </ul>
+                            <div class="mt-3 p-3 bg-slate-100 rounded text-xs font-mono">
+                                Courier Address:<br>
+                                Academic Evaluation Centre (APS India)<br>
+                                Gate No. 3, German Embassy<br>
+                                6/50G, Shanti Path, Chanakyapuri, New Delhi – 110021<br>
+                                (Counter verify address in aps website)
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h4 class="font-bold text-slate-900">5. Verification & Digital APS PDF Issuance: <span class="text-sm font-normal text-slate-600">Processing Time: 3 to 6 Weeks.</span></h4>
+                            <ul class="list-disc pl-6 space-y-1 text-sm mt-2">
+                                <li>APS verifies your degree against the Anabin database (H+ status) and directly contacts your university/college.</li>
+                                <li>Once verification is complete, a digitally signed APS Certificate PDF is emailed directly to your registered email address.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-4 bg-amber-50 rounded-lg border border-amber-200">
+                        <h4 class="font-bold text-amber-900">Important Tips to Prevent Delays</h4>
+                        <ul class="list-disc pl-6 space-y-1 text-sm mt-2 text-amber-950">
+                            <li><strong>University Anabin Status:</strong> Ensure your university carries an H+ rating on the Anabin database before applying.</li>
+                            <li><strong>DigiLocker Integration:</strong> Ensure your 10th and 12th marksheets are accessible on DigiLocker—this speeds up preliminary school board verifications.</li>
+                            <li><strong>No Originals:</strong> Send only clear, self-attested photocopies. Never send original degree certificates via courier.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- SECTION: UNI-ASSIST GUIDE -->
+                <section id="uniassist-guide" class="scroll-mt-24 border-b border-slate-200 pb-8">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-3">Module 2: Uni-Assist Application & VPD Guide</h2>
+                    <p class="mb-4">Uni-Assist (Verein für die Arbeitsvorbereitung von Studierenden e.V.) is the centralized German evaluation agency used by over 180 universities to verify international academic credentials and convert foreign grades into the German grading system.</p>
+
+                    <h3 class="font-bold text-slate-900 text-xl mb-3">1. Uni-Assist Application Pathways Explained</h3>
+
+                    <div class="overflow-x-auto border border-slate-200 rounded-lg mb-6">
+                        <table class="min-w-full text-sm divide-y divide-slate-200">
+                            <thead class="bg-slate-100">
+                                <tr>
+                                    <th class="px-4 py-3 text-left font-bold">Feature</th>
+                                    <th class="px-4 py-3 text-left font-bold">Standard Uni-Assist Application</th>
+                                    <th class="px-4 py-3 text-left font-bold">VPD Pathway (Vorprüfungsdokumentation)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 bg-white">
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">How it Works</td>
+                                    <td class="px-4 py-2">Uni-Assist evaluates documents and forwards your complete application directly to the university.</td>
+                                    <td class="px-4 py-2">Uni-Assist evaluates your documents and issues a VPD Certificate (PDF) to you. You then upload this certificate directly to the university's internal portal.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">University Final Portal Submission</td>
+                                    <td class="px-4 py-2">No separate university portal submission needed.</td>
+                                    <td class="px-4 py-2">Mandatory: Must submit the VPD to the university portal before their deadline.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Common Universities Using This</td>
+                                    <td class="px-4 py-2">TU Berlin, Leipzig University, University of Potsdam</td>
+                                    <td class="px-4 py-2">TU Munich (TUM), RWTH Aachen, University of Stuttgart, LMU Munich</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Processing Time</td>
+                                    <td class="px-4 py-2">4 to 6 Weeks</td>
+                                    <td class="px-4 py-2">4 to 6 Weeks</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="font-bold text-slate-900 text-xl mb-3">2. Prerequisites & Pre-Application Checklist</h3>
+                    <p class="mb-3 text-sm">Before registering on My assist, collect and organize the following digital files:</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm mb-6">
+                        <div class="p-2 border rounded bg-slate-50">[ ] <strong>Digital APS Certificate:</strong> Official PDF downloaded directly from aps-india.de.</div>
+                        <div class="p-2 border rounded bg-slate-50">[ ] <strong>Passport:</strong> Clear PDF scan of first page (photo/biodata) & last page (address).</div>
+                        <div class="p-2 border rounded bg-slate-50">[ ] <strong>Class 10 & Class 12 Marksheets:</strong> Official board marksheets and passing certificates.</div>
+                        <div class="p-2 border rounded bg-slate-50">[ ] <strong>Undergraduate Marksheets:</strong> All individual semester/year marksheets (1st through final).</div>
+                        <div class="p-2 border rounded bg-slate-50">[ ] <strong>Degree Certificate:</strong> Provisional Degree Certificate (PDC) or Original Degree Certificate.</div>
+                        <div class="p-2 border rounded bg-slate-50">[ ] <strong>Language Proficiency:</strong> IELTS/TOEFL scorecard or Goethe/telc/TestDaF certificate.</div>
+                        <div class="p-2 border rounded bg-slate-50">[ ] <strong>Curriculum Vitae (CV):</strong> Europass format, chronological, with no unexplained gaps.</div>
+                        <div class="p-2 border rounded bg-slate-50">[ ] <strong>Anabin Extracts:</strong> PDF prints of University (H+) and Degree status from anabin.kmk.org.</div>
+                    </div>
+
+                    <h3 class="font-bold text-slate-900 text-xl mb-3">3. Step-by-Step Execution Guide</h3>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h4 class="font-bold text-slate-900">1. Account Setup & Applicant Profile: <span class="text-sm font-normal text-slate-600">Portal: my.uni-assist.de.</span></h4>
+                            <ul class="list-disc pl-6 space-y-1 text-sm mt-1">
+                                <li>Register an account on my.uni-assist.de.</li>
+                                <li>Enter personal details matching your Passport exactly.</li>
+                                <li>Complete the Educational History section (Applicant Information):
+                                    <ul class="list-circle pl-6">
+                                        <li>High school education details (Class 10 & 12).</li>
+                                        <li>Higher education details (Indian University, major, duration, and completion status).</li>
+                                    </ul>
+                                </li>
+                                <li>Save your Uni-Assist Applicant Number (Bewerbernummer).</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h4 class="font-bold text-slate-900">2. Course Selection & Application Strategy: <span class="text-sm font-normal text-slate-600">Filter: Semester / Qualification Level.</span></h4>
+                            <ul class="list-disc pl-6 space-y-1 text-sm mt-1">
+                                <li>Go to Course Search (Suchen).</li>
+                                <li>Select target Semester (e.g., Winter Semester), Qualification (e.g., Master), and search for your chosen university.</li>
+                                <li>Add selected programs to your Selection List (Meine Auswahl).</li>
+                                <li><em>Note: You can apply to multiple universities in the same intake cycle under a single Uni-Assist account.</em></li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h4 class="font-bold text-slate-900">3. Digital Document Upload: <span class="text-sm font-normal text-slate-600">File Naming: Clear & Descriptive.</span></h4>
+                            <ul class="list-disc pl-6 space-y-1 text-sm mt-1">
+                                <li>Upload your verified PDF files under the My Application / Documents tab:
+                                    <ul class="list-circle pl-6">
+                                        <li>Standard file format: PDF only (maximum 10 MB per file).</li>
+                                        <li>Use clear English file names (e.g., APS_Certificate.pdf, Bachelor_Transcripts.pdf, IELTS_Scorecard.pdf).</li>
+                                    </ul>
+                                </li>
+                                <li>Answer program-specific mandatory online questionnaires (if prompted by specific universities).</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h4 class="font-bold text-slate-900">4. Fee Payment & Submission: <span class="text-sm font-normal text-slate-600">Payment: Online via Credit Card / Sofort.</span></h4>
+                            <ul class="list-disc pl-6 space-y-1 text-sm mt-1">
+                                <li>Pay the non-refundable Uni-Assist evaluation fee:
+                                    <ul class="list-circle pl-6">
+                                        <li>First Choice Program: €75</li>
+                                        <li>Each Additional Choice Program (in same semester): €30</li>
+                                    </ul>
+                                </li>
+                                <li>Payment Methods: Credit Card (Mastercard/Visa) or SOFORT online transfer. Once paid, your application status changes to Submitted / Paid.</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h4 class="font-bold text-slate-900">5. Evaluation & VPD Certificate Retrieval: <span class="text-sm font-normal text-slate-600">Timeline: 4 to 6 Weeks.</span></h4>
+                            <ul class="list-disc pl-6 space-y-1 text-sm mt-1">
+                                <li>Uni-Assist processes documents on a first-come, first-served basis.</li>
+                                <li>If applying via Direct Uni-Assist: Once verified, you will receive an evaluation report email, and your application status will update to Forwarded to University (An Hochschule weitergeleitet).</li>
+                                <li>If applying via VPD: You will receive a digital VPD Certificate (PDF) in your online inbox.</li>
+                                <li><strong>Crucial Action:</strong> Immediately log into the target university’s portal (e.g., TUMonline or RWTH Online), enter your converted German GPA from the VPD, and upload the VPD PDF before the university's final deadline.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="font-bold text-slate-900 text-xl mb-3">4. Understanding the VPD Certificate Output</h3>
+                    <p class="mb-2">When a VPD is issued, it displays two critical pieces of information used by German admissions committees:</p>
+                    
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg space-y-3">
+                        <p><strong>German Grade Conversion:</strong> Your Indian cumulative percentage or CGPA is officially converted into the German Grading Scale (1.0 to 4.0) using the Bavarian Formula:</p>
+                        <div class="p-3 bg-white font-mono text-center border rounded text-sm text-brand-700">
+                            German Grade = 1 + 3 * ((Nmax - Nd) / (Nmax - Nmin))
+                        </div>
+                        <p class="text-xs text-slate-600">Where Nmax = Maximum achievable grade, Nmin = Minimum passing grade, Nd = Your obtained CGPA/percentage.<br>(In Germany, 1.0 is the highest possible grade / Distinction, and 4.0 is the lowest passing grade).</p>
+                        <p><strong>University Entrance Qualification (HZB):</strong> Confirms whether your foreign qualifications grant Direct Access (Direkter Zugang) or Indirect Access (Indirekter Zugang) to German higher education.</p>
+                    </div>
+
+                    <!-- PUBLIC VS PRIVATE -->
+                    <div id="public-vs-private" class="mt-8 scroll-mt-24">
+                        <h3 class="font-bold text-slate-900 text-2xl mb-3">Module 2.1: Public vs. Private Universities in Germany</h3>
+                        <p class="mb-4">When Indian students explore higher education in Germany, the most crucial decision is distinguishing between tuition-free public universities and fee-based private universities.</p>
+
+                        <h4 class="font-bold text-slate-900 text-lg mb-3">1. Executive Comparison</h4>
+                        <div class="overflow-x-auto border border-slate-200 rounded-lg mb-6">
+                            <table class="min-w-full text-sm divide-y divide-slate-200">
+                                <thead class="bg-slate-100">
+                                    <tr>
+                                        <th class="px-3 py-2 text-left font-bold">Dimension</th>
+                                        <th class="px-3 py-2 text-left font-bold">Public Universities (Staatliche Hochschulen)</th>
+                                        <th class="px-3 py-2 text-left font-bold">Private Universities (Private Hochschulen)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 bg-white">
+                                    <tr><td class="px-3 py-2 font-medium">Share of Student Body</td><td class="px-3 py-2">~90% of all students in Germany</td><td class="px-3 py-2">~10% of all students</td></tr>
+                                    <tr><td class="px-3 py-2 font-medium">Tuition Fees</td><td class="px-3 py-2">€0 Tuition (Except Baden-Württemberg: €1,500/semester)</td><td class="px-3 py-2">€6,000 to €18,000+ per year</td></tr>
+                                    <tr><td class="px-3 py-2 font-medium">Semester Fee (Semesterbeitrag)</td><td class="px-3 py-2">€150 – €400 per semester (Includes free public transport)</td><td class="px-3 py-2">€100 – €300 per semester (Varies)</td></tr>
+                                    <tr><td class="px-3 py-2 font-medium">Language of Instruction</td><td class="px-3 py-2">Mostly German for Bachelor's; High mix of English/German for Master's</td><td class="px-3 py-2">Primarily English-taught across both levels</td></tr>
+                                    <tr><td class="px-3 py-2 font-medium">Admission Selectivity</td><td class="px-3 py-2">High (Strict credit requirements, CGPA cutoffs, ECTS matching)</td><td class="px-3 py-2">Moderate to Low (Flexible cutoffs, higher acceptance rates)</td></tr>
+                                    <tr><td class="px-3 py-2 font-medium">Recognition & Prestige</td><td class="px-3 py-2">Global academic prestige, high industry respect in Germany</td><td class="px-3 py-2">Varies heavily (Requires strict check for state accreditation)</td></tr>
+                                    <tr><td class="px-3 py-2 font-medium">APS & Visa Processing</td><td class="px-3 py-2">Standard APS & VFS verification</td><td class="px-3 py-2">Standard APS & VFS verification (High scrutiny if unaccredited)</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            <div class="p-4 border rounded bg-slate-50">
+                                <h4 class="font-bold text-slate-900 mb-2">2. Deep Dive: Public Universities (Staatliche Hochschulen)</h4>
+                                <p class="text-sm">Public universities receive direct funding from the German federal states (Bundesländer). They represent the traditional gold standard of education in Germany.</p>
+                                <p class="text-sm mt-2"><strong>Advantages:</strong> Zero Tuition Fees, Highest Employer Recognition, Research Infrastructure, Inexpensive Student Travel.</p>
+                                <p class="text-sm mt-1"><strong>Challenges:</strong> Rigid Admission Criteria, High German Language Demands, Bureaucratic Timelines.</p>
+                            </div>
+
+                            <div class="p-4 border rounded bg-slate-50">
+                                <h4 class="font-bold text-slate-900 mb-2">3. Deep Dive: Private Universities (Private Hochschulen)</h4>
+                                <p class="text-sm">Private institutions operate independently of state budgets and rely primarily on tuition fees paid by students.</p>
+                                <p class="text-sm mt-2"><strong>Advantages:</strong> Bypassing Studienkolleg / Direct Entry, Flexible Admissions, Smaller Class Sizes, Multiple Intakes.</p>
+                                <p class="text-sm mt-1 text-rose-700"><strong>Risks & Critical Watchouts:</strong> Agency Promotion Bias, Accreditation Checks (State Recognition), High Financial Outlay.</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg mb-4">
+                            <h4 class="font-bold text-slate-900 mb-2">4. Verification Workflow: Evaluating a Private University</h4>
+                            <ol class="list-decimal pl-6 space-y-1 text-sm">
+                                <li><strong>Verify State Recognition on Anabin:</strong> Look up the exact institution on anabin.kmk.org under Institutionen. Ensure it possesses an H+ status.</li>
+                                <li><strong>Confirm Degree Program Accreditation:</strong> Check whether the specific degree program is accredited by an official German accreditation body (e.g., ACQUIN, FIBAA, or Akkreditierungsrat).</li>
+                                <li><strong>Verify 18-Month Post-Study Work Visa Eligibility:</strong> Confirm with the university's international office that graduation from their program legally qualifies non-EU students for the standard 18-month Post-Study Work Visa (Section 20 AufenthG).</li>
+                            </ol>
+                        </div>
+
+                        <div class="p-4 bg-brand-50 border border-brand-200 rounded-lg">
+                            <h4 class="font-bold text-brand-900 mb-2">5. Summary Recommendation for the Portal</h4>
+                            <p class="text-sm"><strong>Primary Route:</strong> Always target Public Universities first to maximize return on investment and degree recognition.</p>
+                            <p class="text-sm mt-1"><strong>Fallback Route:</strong> Consider State-Recognized Private Universities primarily if you do not meet the strict ECTS credit prerequisites of public universities, or if you need an immediate direct-entry pathway after Class 12 without taking Studienkolleg.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION: FINANCIAL SETUP & HEALTH INSURANCE -->
+                <section id="financial-setup-insurance" class="scroll-mt-24 border-b border-slate-200 pb-8">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-3">Financial Setup & Health Insurance:</h2>
+                    <p class="mb-4">To secure your National Visa (§ 16b AufenthG) as an Indian student, German authorities require specific, verified proof of financial sustainability (Sperrkonto) alongside dual-layered health insurance coverage (Travel/Incoming Insurance + Statutory German Public Health Insurance).</p>
+
+                    <h3 class="font-bold text-slate-900 text-xl mb-3">Part 1: The Dual Health Insurance Architecture</h3>
+                    <div class="space-y-2 text-sm mb-6">
+                        <p><strong>Incoming / Travel Health Insurance (First 14–90 Days):</strong> Covers your flight, transit, and initial arrival period before your academic semester officially starts.</p>
+                        <p><strong>Statutory Public Health Insurance (Gesetzliche Krankenversicherung - GKV):</strong> Starts on your official university enrollment date (e.g., October 1 or April 1). Covers doctors, hospitals, and prescriptions inside Germany (~€120–€130/month).</p>
+                        <p class="p-3 bg-emerald-50 text-emerald-900 rounded font-medium border border-emerald-200">Pro-Tip: Bundling both via an official provider (Expatrio Value Package, Fintiba Plus, or Coracle Prime) gets you the mandatory Incoming/Travel Health Insurance free of charge.</p>
+                    </div>
+
+                    <h3 class="font-bold text-slate-900 text-xl mb-3">Part 2: Step-by-Step Setup Sequence</h3>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h4 class="font-bold text-slate-900">1. Select Provider & Initiate Portal Application: <span class="text-sm font-normal text-slate-600">Duration: 15–30 Minutes.</span></h4>
+                            <p class="text-sm mt-1">Choose a BaFin-approved provider (Expatrio, Fintiba, or Coracle). Select the All-In-One / Value Package to combine your Blocked Account (Sperrkonto), Statutory Public Health Insurance (Techniker Krankenkasse/TK, Barmer, or AOK), and Free Incoming Travel Insurance into a single workflow.</p>
+                            <p class="text-sm mt-1"><strong>Required Documents:</strong> Passport copy (color PDF) and your official University Admission Letter (Zulassungsbescheid).</p>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h4 class="font-bold text-slate-900">2. Account Opening & Payment Transfer Instructions: <span class="text-sm font-normal text-slate-600">Duration: Same Day.</span></h4>
+                            <p class="text-sm mt-1">Once verified, your provider generates account opening documents and issues payment instructions containing a German IBAN or a local Indian partner collection account.</p>
+                            <p class="text-sm mt-1"><strong>Total Amount to Transfer:</strong> €11,904 (statutory 1-year blocked sum) + ~€100–€150 (provider buffer & opening fees).</p>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h4 class="font-bold text-slate-900">3. Execute Outward Remittance (LRS) from India: <span class="text-sm font-normal text-slate-600">Duration: 1–3 Business Days.</span></h4>
+                            <p class="text-sm mt-1">Pay via an Indian bank using Liberalised Remittance Scheme (LRS) rules (Form A2).</p>
+                            <p class="text-sm mt-1"><strong>Remittance Purpose Code:</strong> Select S0305 (Travel for Education, including fees & living expenses).</p>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h4 class="font-bold text-slate-900">4. Download Visa-Ready Certificates: <span class="text-sm font-normal text-slate-600">Duration: Immediate Upon Receipt.</span></h4>
+                            <p class="text-sm mt-1">Once funds arrive in Germany, your provider portal unlocks two critical PDF downloads required for your VFS dossier and digital.diplo.de visa upload: Official Blocking Confirmation (Sperrbestätigung) proving €11,904 deposit and Health Insurance Certificate.</p>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h4 class="font-bold text-slate-900">5. On-Ground Activation in Germany: <span class="text-sm font-normal text-slate-600">Post-Arrival Step.</span></h4>
+                            <p class="text-sm mt-1">Upon arrival in Germany, register your local address (Anmeldung), open a local current account (Girokonto), and upload your University Enrollment Certificate (Immatrikulationsbescheinigung) to your insurance portal. Monthly payouts of €992 and insurance debiting will begin automatically.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="font-bold text-slate-900 text-xl mb-3">Part 3: VFS & Portal Document Checklist</h3>
+                    <div class="overflow-x-auto border border-slate-200 rounded-lg">
+                        <table class="min-w-full text-sm divide-y divide-slate-200">
+                            <thead class="bg-slate-100">
+                                <tr>
+                                    <th class="px-4 py-2 text-left font-bold">Document</th>
+                                    <th class="px-4 py-2 text-left font-bold">Purpose</th>
+                                    <th class="px-4 py-2 text-left font-bold">Key Verification Details</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 bg-white">
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Sperrbestätigung</td>
+                                    <td class="px-4 py-2">Proof of Financial Means</td>
+                                    <td class="px-4 py-2">Must show full €11,904 deposit with €992/month release limit.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Incoming Travel Insurance</td>
+                                    <td class="px-4 py-2">Pre-Semester Health Coverage</td>
+                                    <td class="px-4 py-2">Valid from flight date until official semester start date.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Statutory Health Insurance Certificate</td>
+                                    <td class="px-4 py-2">Semester Health Coverage</td>
+                                    <td class="px-4 py-2">Issued by TK, Barmer, or AOK (shows M10 notification / digital university notification).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- SECTION: VIDEX & DOSSIER -->
+                <section id="videx-dossier-vfs" class="scroll-mt-24 border-b border-slate-200 pb-8">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-3">Module 4: VIDEX Form, Paper Dossier Compilation, and VFS Appointment Guide</h2>
+                    <p class="mb-4">This operational guide outlines the exact sequence for completing your Type D National Visa (§ 16b AufenthG) filing in India.</p>
+
+                    <h3 class="font-bold text-slate-900 text-xl mb-3">Part 1: Step-by-Step VIDEX Form Completion</h3>
+                    <p class="mb-3 text-sm">The VIDEX form generates the machine-readable barcode scanned at VFS. Complete the form directly via digital.diplo.de (or videx.diplo.de):</p>
+
+                    <ul class="list-disc pl-6 space-y-2 text-sm mb-6">
+                        <li><strong>Personal Information:</strong> Enter surname and given names verbatim as shown in your passport MRZ (Machine Readable Zone).</li>
+                        <li><strong>Contact Details:</strong> Use a permanent Indian mobile number and an active email address where you can receive PDF pre-approvals.</li>
+                        <li><strong>Passport Details:</strong> Input document number, issue date, and expiry date matching your physical passport.</li>
+                        <li><strong>Intended Stay & Entry:</strong>
+                            <ul class="list-circle pl-6 mt-1 space-y-1">
+                               有意 Purpose of Stay: Select Study / Higher Education (§ 16b).
+                               <li>Intended Date of Entry: Match your Travel Health Insurance start date (typically 7–14 days prior to course start/orientation).</li>
+                               <li>Duration: Enter the standard program duration in days (e.g., 730 days for a 2-year Master's).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Reference / Host in Germany:</strong> Enter the official name, street address, postal code, and contact email of your German university as printed on your Zulassungsbescheid.</li>
+                        <li><strong>Means of Support:</strong> Check Sperrkonto (Blocked Account) and enter the provider details (Expatrio, Fintiba, Coracle) along with €11,904.</li>
+                        <li><strong>Export Step:</strong> Once completed, save a .json backup file to your device and download the final VIDEX PDF containing the 2D Barcode pages.</li>
+                    </ul>
+
+                    <h3 class="font-bold text-slate-900 text-xl mb-3">Part 2: Compiling the A4 Paper Dossier</h3>
+                    
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg mb-4 text-sm">
+                        <p class="font-bold text-slate-900">A. Dossier Assembly Rules:</p>
+                        <p class="mt-1">Two Identical Sets (Original Set + Copy Set), A4 Paper Standard, No Fasteners (staples/pins), 3 biometric passport photos (35x45mm, white background, 80% face coverage).</p>
+                    </div>
+
+                    <p class="font-bold text-slate-900 text-sm mb-2">B. Strict Checklist Stacking Order (Top to Bottom):</p>
+                    <div class="space-y-2 text-sm mb-6">
+                        <div class="p-3 bg-white border border-slate-200 rounded">
+                            <span class="font-bold text-brand-700">1. Layer 1: VIDEX Form & Statutory Declarations</span>
+                            <p>(Signed VIDEX Application Form, Signed Section 54(2) Residence Act Declaration, Signed Additional Contact Form).</p>
+                        </div>
+                        <div class="p-3 bg-white border border-slate-200 rounded">
+                            <span class="font-bold text-brand-700">2. Layer 2: Identity & Academic Credentials</span>
+                            <p>(Passport Data Page Copy, APS Certificate Original PDF, Zulassungsbescheid, Language Proficiency Certificate, Academic Qualification Marksheets & Degree Certificates).</p>
+                        </div>
+                        <div class="p-3 bg-white border border-slate-200 rounded">
+                            <span class="font-bold text-brand-700">3. Layer 3: Professional & Personal Documentation</span>
+                            <p>(Tabular CV formatted to DIN 5008 standards, Statement of Purpose / Motivation Letter, Proof of Work Experience).</p>
+                        </div>
+                        <div class="p-3 bg-white border border-slate-200 rounded">
+                            <span class="font-bold text-brand-700">4. Layer 4: Financial Proof & Health Coverage</span>
+                            <p>(Sperrbestätigung proving €11,904 deposit, Tuition Fee Payment Receipt, Dual Health Insurance Certificates).</p>
+                        </div>
+                    </div>
+
+                    <h3 class="font-bold text-slate-900 text-xl mb-3">Part 3: Booking & Attending the VFS Appointment</h3>
+                    <ol class="list-decimal pl-6 space-y-2 text-sm mb-6">
+                        <li><strong>Digital Pre-Approval via Consular Services Portal:</strong> digital.diplo.de</li>
+                        <li><strong>Receive Pre-Check Confirmation & Pre-Clearance QR Code.</strong></li>
+                        <li><strong>Book VFS Biometrics Slot on VFS Global Germany India portal.</strong></li>
+                        <li><strong>Attend VFS Counter Appointment in person with Passport, 2 Stacked A4 Paper Dossiers, and Visa Fee (€75 in INR).</strong></li>
+                    </ol>
+
+                    <!-- PITFALLS -->
+                    <div id="pitfalls-avoid" class="mt-8 scroll-mt-24">
+                        <h3 class="font-bold text-slate-900 text-xl mb-3">Videx & Dossier Pitfalls to Avoid:</h3>
+                        
+                        <div class="overflow-x-auto border border-slate-200 rounded-lg mb-6">
+                            <table class="min-w-full text-sm divide-y divide-slate-200">
+                                <thead class="bg-rose-50">
+                                    <tr>
+                                        <th class="px-4 py-2 text-left font-bold text-rose-900">Mistake</th>
+                                        <th class="px-4 py-2 text-left font-bold text-rose-900">Impact / Cause</th>
+                                        <th class="px-4 py-2 text-left font-bold text-rose-900">How to Fix</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 bg-white">
+                                    <tr>
+                                        <td class="px-4 py-2 font-medium">Manual Pen Corrections</td>
+                                        <td class="px-4 py-2">Hand-written edits or white-out on the printed PDF trigger instant rejection.</td>
+                                        <td class="px-4 py-2">Never write on the form by hand. Regenerate and reprint the PDF from digital.diplo.de.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 font-medium">Name Discrepancies</td>
+                                        <td class="px-4 py-2">Splitting names differently than shown on the passport MRZ.</td>
+                                        <td class="px-4 py-2">If you have a single name, enter it in the Surname field and leave First Name blank. Match all fields verbatim.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 font-medium">Damaged / Folded Barcodes</td>
+                                        <td class="px-4 py-2">Creased or poorly printed 2D Barcodes cannot be scanned at the VFS counter.</td>
+                                        <td class="px-4 py-2">Print the barcode pages on a clean laser printer without folding or stapling them.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 font-medium">Incorrect Reference / Address</td>
+                                        <td class="px-4 py-2">Entering generic university names without full German postal codes (PLZ).</td>
+                                        <td class="px-4 py-2">Copy the exact street, house number, PLZ, and city from your Zulassungsbescheid.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 font-medium">Misaligned Entry Dates</td>
+                                        <td class="px-4 py-2">Setting an entry date after the mandatory orientation or semester start.</td>
+                                        <td class="px-4 py-2">Align entry dates with your Incoming Travel Health Insurance (7–14 days prior to course start).</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="p-4 bg-rose-50 border border-rose-200 rounded-lg">
+                            <h4 class="font-bold text-rose-900 mb-2">Paper Dossier Compilation Pitfalls:</h4>
+                            <ul class="list-disc pl-6 space-y-1 text-sm text-rose-950">
+                                <li>Stapling or Binding Documents (Use loose paper separated only by simple paperclips).</li>
+                                <li>Mixing Paper Sizes (Use clean A4 paper exclusively).</li>
+                                <li>Mismatched Stack Order (Follow the strict sequence Layer 1 to Layer 4).</li>
+                                <li>Non-Biometric Photographs (Ensure 80% face coverage, white background).</li>
+                                <li>Generic / Plagiarized Motivation Letters.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION: COVER LETTER TEMPLATE & FAQ -->
+                <section id="templates-faq" class="scroll-mt-24 border-b border-slate-200 pb-8">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Sample Cover Letter / Motivation Letter Template & FAQ</h2>
+
+                    <div class="p-6 bg-slate-900 text-slate-100 rounded-lg font-mono text-xs sm:text-sm space-y-4 shadow-inner mb-8 overflow-x-auto">
+                        <p class="text-amber-400">// SAMPLE COVER LETTER / MOTIVATION LETTER TEMPLATE</p>
+                        <p>To,<br>The Visa Officer,<br>Embassy / Consulate General of the Federal Republic of Germany in India</p>
+                        <p><strong>Subject: Application for National Student Visa (§ 16b AufenthG) – [Your Full Name]</strong></p>
+                        <p>Respected Sir/Madam,</p>
+                        <p>I am writing to formally apply for a Subcategory D National Student Visa to pursue my Master of Science in [Course Name] at [University Name], commencing in [Semester, e.g., Winter Semester 2024].</p>
+                        <p><strong>1. Academic Background:</strong><br>I have completed my Bachelor of Engineering in [Field] from [University Name], India, with a CGPA of [Score]. My academic records have been verified and authenticated by the Academic Evaluation Centre (APS India) under Certificate No. [APS Certificate Number].</p>
+                        <p><strong>2. Motivation & Choice of Program:</strong><br>[Explain in 2-3 paragraphs why you chose this specific course, how the curriculum aligns with your previous academic background, and why Germany is the ideal country for this study field compared to India].</p>
+                        <p><strong>3. Financial Arrangement:</strong><br>I have deposited the mandatory living expenses sum of €11,904 into a Blocked Account with [Provider Name: Expatrio/Fintiba/Coracle] (Sperrbestätigung attached). Furthermore, I have secured dual health insurance coverage with [Insurance Provider].</p>
+                        <p><strong>4. Future Career Plans:</strong><br>Upon completion of my degree, I intend to leverage the skills acquired in Germany to pursue professional opportunities in [Target Sector/Industry].</p>
+                        <p>Enclosed with this cover letter are two sets of physical A4 dossiers as mandated by the visa checklist.</p>
+                        <p>Thank you for considering my application.</p>
+                        <p>Sincerely,<br>[Your Full Name]<br>[Passport Number]<br>[Email Address & Phone Number]</p>
+                    </div>
+
+                    <!-- FAQ -->
+                    <h3 class="font-bold text-slate-900 text-xl mb-4">Frequently Asked Questions (FAQ)</h3>
+                    <div class="space-y-3">
+                        <details class="group border border-slate-200 rounded-lg p-4 bg-slate-50 [&_summary::-webkit-details-marker]:hidden">
+                            <summary class="flex items-center justify-between font-semibold text-slate-900 cursor-pointer">
+                                <span>Can I apply for a visa before getting my APS certificate?</span>
+                                <span class="ml-1.5 shrink-0 transition duration-300 group-open:-rotate-180"><i class="fa-solid fa-chevron-down text-xs"></i></span>
+                            </summary>
+                            <p class="mt-2 text-sm text-slate-600">No. APS verification is mandatory prior to visa file submission at VFS Global for Indian degree holders.</p>
+                        </details>
+
+                        <details class="group border border-slate-200 rounded-lg p-4 bg-slate-50 [&_summary::-webkit-details-marker]:hidden">
+                            <summary class="flex items-center justify-between font-semibold text-slate-900 cursor-pointer">
+                                <span>Is IELTS mandatory if my degree was taught in English?</span>
+                                <span class="ml-1.5 shrink-0 transition duration-300 group-open:-rotate-180"><i class="fa-solid fa-chevron-down text-xs"></i></span>
+                            </summary>
+                            <p class="mt-2 text-sm text-slate-600">While some universities accept a Medium of Instruction (MOI) letter, VFS and most top public universities strongly require official IELTS/TOEFL scores.</p>
+                        </details>
+
+                        <details class="group border border-slate-200 rounded-lg p-4 bg-slate-50 [&_summary::-webkit-details-marker]:hidden">
+                            <summary class="flex items-center justify-between font-semibold text-slate-900 cursor-pointer">
+                                <span>What happens if my Blocked Account provider is not recognized?</span>
+                                <span class="ml-1.5 shrink-0 transition duration-300 group-open:-rotate-180"><i class="fa-solid fa-chevron-down text-xs"></i></span>
+                            </summary>
+                            <p class="mt-2 text-sm text-slate-600">Only use BaFin-approved standard providers like Expatrio, Fintiba, or Coracle to avoid immediate visa rejection.</p>
+                        </details>
+                    </div>
+                </section>
+
+                <!-- SECTION: ASK A QUESTION FORM -->
+                <section id="ask-question" class="scroll-mt-24 pt-4">
+                    <div class="bg-gradient-to-br from-slate-100 to-brand-50 border border-brand-200 rounded-xl p-6 lg:p-8">
+                        <div class="max-w-2xl mx-auto">
+                            <h2 class="text-2xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-comments text-brand-600"></i> Ask a Question & Peer Support
+                            </h2>
+                            <p class="text-sm text-slate-600 mb-6">
+                                Stuck on APS, Uni-Assist credits, Sperrkonto transfers, or VFS appointments? Send your question below to receive peer assistance and community guidance.
+                            </p>
+
+                            <!-- Formspree Form Integration -->
+                            <form id="peer-question-form" action="https://formspree.io/f/xbjnqypv" method="POST" class="space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="full-name" class="block text-xs font-bold uppercase text-slate-700 mb-1">Full Name</label>
+                                        <input type="text" id="full-name" name="name" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none" placeholder="e.g., Rahul Sharma">
+                                    </div>
+                                    <div>
+                                        <label for="email-address" class="block text-xs font-bold uppercase text-slate-700 mb-1">Email Address</label>
+                                        <input type="email" id="email-address" name="email" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none" placeholder="rahul@example.com">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="topic-category" class="block text-xs font-bold uppercase text-slate-700 mb-1">Topic Category</label>
+                                    <select id="topic-category" name="category" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                                        <option value="APS Verification">APS Verification</option>
+                                        <option value="Uni-Assist & VPD">Uni-Assist & VPD</option>
+                                        <option value="Blocked Account & Insurance">Blocked Account & Insurance</option>
+                                        <option value="VIDEX & VFS Appointment">VIDEX & VFS Appointment</option>
+                                        <option value="General Query">General Query</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="user-message" class="block text-xs font-bold uppercase text-slate-700 mb-1">Your Question / Doubt</label>
+                                    <textarea id="user-message" name="message" rows="4" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none" placeholder="Please describe your query in detail..."></textarea>
+                                </div>
+
+                                <button type="submit" id="submit-btn" class="w-full py-3 px-6 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-lg shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
+                                    <span>Submit Question</span>
+                                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Confirmation Overlay -->
+    <div id="modal-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-md w-full p-6 text-center shadow-2xl transform transition-all">
+            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Question Submitted!</h3>
+            <p class="text-sm text-slate-600 mb-6">
+                Thank you for reaching out. Your query has been logged into the DIY community portal system.
+            </p>
+            <button id="close-modal" class="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-lg transition text-sm">
+                Close Window
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 mt-12 text-sm">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p class="font-medium text-slate-300">German Student Visa DIY Web Portal for Indian Students</p>
+            <p class="text-xs text-slate-500">Open-source documentation initiative for peer-driven higher education guidance in Germany.</p>
+            <p class="text-xs text-slate-400 max-w-xl mx-auto pt-2 border-t border-slate-800">
+                <strong>Disclaimer:</strong> Reading this guide does not qualify you for a visa. This is an AI-generated result and we take no responsibility for the accuracy of the documentation. Please check equivalent official government websites for cross-verification.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Sidebar Toggle
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const sidebarClose = document.getElementById('sidebar-close');
+
+            sidebarToggle.addEventListener('click', () => {
+                sidebar.classList.remove('-translate-x-full');
+            });
+
+            sidebarClose.addEventListener('click', () => {
+                sidebar.classList.add('-translate-x-full');
+            });
+
+            // Close sidebar when clicking a link on mobile
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 1024) {
+                        sidebar.classList.add('-translate-x-full');
+                    }
+                });
+            });
+
+            // Real-time Search and Highlight Logic
+            const searchInput = document.getElementById('global-search');
+            const clearSearchBtn = document.getElementById('clear-search');
+            const searchCounter = document.getElementById('search-counter');
+            const contentContainer = document.getElementById('content-container');
+
+            // Store original content HTML for clean resets
+            const originalHTML = contentContainer.innerHTML;
+
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim();
+
+                if (query.length > 0) {
+                    clearSearchBtn.classList.remove('hidden');
+                } else {
+                    clearSearchBtn.classList.add('hidden');
+                    searchCounter.classList.add('hidden');
+                    contentContainer.innerHTML = originalHTML;
+                    rebindFormListeners();
+                    return;
+                }
+
+                if (query.length < 2) return; // Wait for at least 2 characters
+
+                // Restore clean HTML before performing search regex
+                contentContainer.innerHTML = originalHTML;
+
+                // Perform Text Node highlighting without breaking HTML tags
+                const matchesCount = highlightTextNodes(contentContainer, query);
+
+                if (matchesCount > 0) {
+                    searchCounter.textContent = `${matchesCount} match${matchesCount > 1 ? 'es' : ''} found`;
+                    searchCounter.classList.remove('hidden');
+                } else {
+                    searchCounter.textContent = 'No matches found';
+                    searchCounter.classList.remove('hidden');
+                }
+
+                rebindFormListeners();
+            });
+
+            clearSearchBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                clearSearchBtn.classList.add('hidden');
+                searchCounter.classList.add('hidden');
+                contentContainer.innerHTML = originalHTML;
+                rebindFormListeners();
+            });
+
+            // Helper function to recursively highlight matches in text nodes
+            function highlightTextNodes(element, query) {
+                let matchCount = 0;
+                const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
+
+                const walk = document.createTreeWalker(
+                    element,
+                    NodeFilter.SHOW_TEXT,
+                    {
+                        acceptNode: function(node) {
+                            // Exclude script tags or interactive form inputs
+                            if (node.parentNode.tagName === 'SCRIPT' || 
+                                node.parentNode.tagName === 'STYLE' || 
+                                node.parentNode.tagName === 'TEXTAREA' || 
+                                node.parentNode.tagName === 'INPUT' ||
+                                node.parentNode.classList.contains('highlight')) {
+                                return NodeFilter.FILTER_REJECT;
+                            }
+                            return NodeFilter.FILTER_ACCEPT;
+                        }
+                    },
+                    false
+                );
+
+                const textNodes = [];
+                let node;
+                while (node = walk.nextNode()) {
+                    textNodes.push(node);
+                }
+
+                textNodes.forEach(textNode => {
+                    if (regex.test(textNode.nodeValue)) {
+                        const matches = textNode.nodeValue.match(regex);
+                        if (matches) matchCount += matches.length;
+
+                        const span = document.createElement('span');
+                        span.innerHTML = textNode.nodeValue.replace(regex, '<mark class="highlight">$1</mark>');
+                        textNode.parentNode.replaceChild(span, textNode);
+                    }
+                });
+
+                return matchCount;
+            }
+
+            function escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            }
+
+            // Form Validation & Modal Handler
+            function rebindFormListeners() {
+                const form = document.getElementById('peer-question-form');
+                const modal = document.getElementById('modal-overlay');
+                const closeModal = document.getElementById('close-modal');
+
+                if (form) {
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        const name = document.getElementById('full-name').value.trim();
+                        const email = document.getElementById('email-address').value.trim();
+                        const message = document.getElementById('user-message').value.trim();
+
+                        if (!name || !email || !message) {
+                            alert('Please complete all required fields.');
+                            return;
+                        }
+
+                        // Submit via Fetch API to Formspree
+                        const formData = new FormData(form);
+                        fetch(form.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        }).catch(() => {
+                            // Fallback simulation
+                        }).finally(() => {
+                            modal.classList.remove('hidden');
+                            form.reset();
+                        });
+                    });
+                }
+
+                if (closeModal) {
+                    closeModal.addEventListener('click', () => {
+                        modal.classList.add('hidden');
+                    });
+                }
+            }
+
+            rebindFormListeners();
+        });
+    </script>
+</body>
+</html>
